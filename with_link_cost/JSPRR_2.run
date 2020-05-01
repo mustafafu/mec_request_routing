@@ -1,0 +1,35 @@
+#RESET THE AMPL ENVIROMENT
+reset;
+
+#LOAD THE MODEL
+model JSPRR_2.mod;
+
+#LOAD THE DATA
+data JSPRR_2.dat;
+
+#DISPLAY THE PROBLEM FORMULATION
+expand z;
+/*
+expand IncomingDemandConstraint;
+expand ForwardNodesConstraint;
+expand LinkCapacityConstraint;
+expand LinkUtilization;
+expand LeftConst1;
+expand RightConst1;
+expand Const2;
+expand LeftConst3;
+expand RightConst3;
+expand Const4;
+expand Const5;
+*/
+
+#CHANGE THE SOLVER (optional)
+option solver cplex;
+
+#SOLVE
+solve;
+
+#SHOW RESULTS
+display x;
+display y;
+display u;
