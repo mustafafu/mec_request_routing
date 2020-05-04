@@ -4,14 +4,7 @@ param e := 10;		   #number of edges
 param s := 5;		   #number of different services
 
 
-param U_N:	1	2	3	4:=
-		1	1	1	1	0
-		2	1	1	0	0
-		3	1	0	1	0
-		4	0	1	1	0
-		5	1	0	0	0
-		6	0	1	0	0
-		7	0	0	1	0;
+
 
 
 param  A:	1	2	3	4:=
@@ -61,6 +54,16 @@ param	L :=
 		8	2
 		9	2
 		10	2;
+
+
+param U_N:	1	2	3	4:=
+		1	1	1	1	0
+		2	1	1	0	0
+		3	1	0	1	0
+		4	0	1	1	0
+		5	1	0	0	0
+		6	0	1	0	0
+		7	0	0	1	0;
 
 		
 param	S_M :=

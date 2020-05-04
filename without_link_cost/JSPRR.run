@@ -5,9 +5,9 @@ reset;
 model JSPRR.mod;
 
 #LOAD THE DATA
-data JSPRR.dat;
+data service.dat;
 
-#DISPLAY THE PROBLEM FORMULATION
+#DISPLAY THE PROBLEM FORMULATION 
 expand z;
 /*
 expand IncomingDemandConstraint;
@@ -30,4 +30,6 @@ option solver cplex;
 solve;
 
 #SHOW RESULTS
-display x, y, u;
+display x;
+display y;
+display u;

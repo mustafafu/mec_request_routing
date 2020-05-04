@@ -33,7 +33,7 @@ param S_W {S} >= 0;  # The profit gain of a service for a MNO
 
 
 # User Parameters
-param U_S {U} = trunc( Uniform(1,6) );; # The service requested by user U
+param U_S {U} integer; # The service requested by user U
 param U_N {U,N} binary; # 1 if user can use access node 0 otherwise.
 
 
@@ -47,9 +47,9 @@ var y {E} 	  >= 0; 		# The total volume of demands on link E
 */
 
 # Variables Linear Programming
-var x {N,U}   >= 0 binary;  # Placing a function on node N for user U
+var x {N,U}   >= 0 ;  # Placing a function on node N for user U
 var y {N,U}   >= 0 binary;  # 1 if user u uses access node n
-var u {U,E}	  >= 0 binary;  # 1 if the edge E is user do serve user U
+var u {U,E}	  >= 0 ;  # 1 if the edge E is user do serve user U
 #var y {E} 	  >= 0; 		# The total volume of demands on link E
 
 
