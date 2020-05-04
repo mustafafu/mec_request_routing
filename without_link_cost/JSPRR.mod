@@ -48,7 +48,7 @@ var y {E} 	  >= 0; 		# The total volume of demands on link E
 
 # Variables Linear Programming
 var x {N,U}   >= 0 ;  # Placing a function on node N for user U
-var y {N,U}   >= 0 binary;  # 1 if user u uses access node n
+var y {N,U}   >= 0 ;  # 1 if user u uses access node n
 var u {U,E}	  >= 0 ;  # 1 if the edge E is user do serve user U
 #var y {E} 	  >= 0; 		# The total volume of demands on link E
 

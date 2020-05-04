@@ -57,6 +57,10 @@ service_traffic = 1e6 * ( 1 + 4 * rand( num_service,1 ) ); % 1- 5 Mbps
 service_value = rand(num_service,1);
 service_tolerance_delay = 20 + 80 * rand(num_service,1); % for now, need to adjust. 20-100 ms
 
+service_memory = service_memory * 5;
+service_computation = service_computation * 5;
+service_traffic = service_traffic * 5;
+
 %% User Generation
 R = seperation;
 num_users = 500;
