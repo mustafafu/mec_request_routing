@@ -1,5 +1,5 @@
 reset;
-model JSPRR.mod;
+model JSPRR_mip.mod;
 data './Data/service_10.dat';
 option solver '/home/mustafafu/ampl_linux-intel64/cplex';
 solve;

@@ -1,8 +1,9 @@
-AI = getenv('iteration')
+%AI = getenv('iteration')
 if(isempty(AI))
-    AI = '0';
+    AI = '0'
 else
-    nAI = str2double(AI);
+    nAI = str2double(AI)
+    rng(str2num(AI),'twister');
 end
 %% Canvas
 canvas_size = [600,600];
@@ -114,7 +115,7 @@ ylim([0,canvas_size(2)])
 
 
 %% Writing the data to a file
-file_string = ['service',AI,'.dat'];
+file_string = ['./Data/service_',AI,'.dat'];
 fileID = fopen(file_string,'w');
 formatSpec = 'param %s := %d;\n';
 fprintf(fileID,formatSpec,'p',num_users);
