@@ -1,10 +1,10 @@
-AI = getenv('iteration')
-if(isempty(AI))
-    AI = '0';
-else
-    nAI = str2double(AI);
+% to run iteration_limit=limit;ScenarioGenerator
+if isEmpty(iteration_limit)
+    iteration_limit = [1,2]
 end
+for nAI=iteration_limit(1):iteration_limit(2)
 %% Canvas
+rng(nAI,'twister');
 canvas_size = [600,600];
 
 
@@ -41,6 +41,7 @@ num_edges = length(link_origins);
 
 link_delay = 4 + 6 * rand(num_edges,1); % 4 to 10 ms
 link_capacity = 1e6 * (125 + 125 * rand(num_edges,1)); %125-250 Mbps
+link_cost = 0 * (0.1 + 0.9 * rand(num_edges,1)); %1e-4 - 1e-3
 
 A = zeros(num_edges,num_nodes);
 B = zeros(num_edges,num_nodes);
@@ -114,13 +115,13 @@ ylim([0,canvas_size(2)])
 
 
 %% Writing the data to a file
-file_string = ['service',AI,'.dat'];
+file_string = ['./Data/service_',num2str(nAI),'.dat'];
 fileID = fopen(file_string,'w');
 formatSpec = 'param %s := %d;\n';
-fprintf(fileID,formatSpec,'p',num_users);
-fprintf(fileID,formatSpec,'n',num_nodes);
-fprintf(fileID,formatSpec,'e',num_edges);
-fprintf(fileID,formatSpec,'s',num_service);
+fprintf(fileID,formatSpec,'U',num_users);
+fprintf(fileID,formatSpec,'N',num_nodes);
+fprintf(fileID,formatSpec,'E',num_edges);
+fprintf(fileID,formatSpec,'S',num_service);
 fprintf(fileID,'\n');
 
 
@@ -134,7 +135,22 @@ fprintf(fileID,'\n\n');
 write_array_float(fileID,'C',link_capacity)
 fprintf(fileID,'\n\n');
 
+write_array_float(fileID,'XI',link_cost)
+fprintf(fileID,'\n\n');
+
 write_array_float(fileID,'L',link_delay)
+fprintf(fileID,'\n\n');
+
+
+
+
+write_array_float(fileID,'N_M',node_memory)
+fprintf(fileID,'\n\n');
+
+write_array_float(fileID,'N_C',node_capacity)
+fprintf(fileID,'\n\n');
+
+write_array_integer(fileID,'N_K',node_connectivity)
 fprintf(fileID,'\n\n');
 
 
@@ -157,14 +173,6 @@ fprintf(fileID,'\n\n');
 
 
 
-write_array_float(fileID,'N_M',node_memory)
-fprintf(fileID,'\n\n');
-
-write_array_float(fileID,'N_C',node_capacity)
-fprintf(fileID,'\n\n');
-
-write_array_integer(fileID,'N_K',node_connectivity)
-fprintf(fileID,'\n\n');
 
 
 
@@ -176,4 +184,4 @@ fprintf(fileID,'\n\n');
 
 fprintf(fileID,'\n\n');
 
-
+end

@@ -1,0 +1,8 @@
+reset;
+model lp.mod;
+data './Data/service_12.dat';
+option solver '/home/mustafafu/ampl_linux-intel64/cplex';
+solve;
+display server_indicator;
+display access_indicator;
+display link_indicator;
