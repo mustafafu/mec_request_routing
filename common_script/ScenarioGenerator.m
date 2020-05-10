@@ -1,5 +1,5 @@
 % to run iteration_limit=limit;ScenarioGenerator
-if isEmpty(iteration_limit)
+if isempty(iteration_limit)
     iteration_limit = [1,2]
 end
 for nAI=iteration_limit(1):iteration_limit(2)
@@ -114,74 +114,118 @@ ylim([0,canvas_size(2)])
 
 
 
-%% Writing the data to a file
-file_string = ['./Data/service_',num2str(nAI),'.dat'];
-fileID = fopen(file_string,'w');
-formatSpec = 'param %s := %d;\n';
-fprintf(fileID,formatSpec,'U',num_users);
-fprintf(fileID,formatSpec,'N',num_nodes);
-fprintf(fileID,formatSpec,'E',num_edges);
-fprintf(fileID,formatSpec,'S',num_service);
-fprintf(fileID,'\n');
+
+% 
+% %% Writing the data to a file
+% file_string = ['./Data/service_',num2str(nAI),'.dat'];
+% fileID = fopen(file_string,'w');
+% formatSpec = 'param %s := %d;\n';
+% fprintf(fileID,formatSpec,'U',num_users);
+% fprintf(fileID,formatSpec,'N',num_nodes);
+% fprintf(fileID,formatSpec,'E',num_edges);
+% fprintf(fileID,formatSpec,'S',num_service);
+% fprintf(fileID,'\n');
+% 
+% 
+% 
+% write_matrix_integer(fileID,'A',A)
+% fprintf(fileID,'\n\n');
+% 
+% write_matrix_integer(fileID,'B',B)
+% fprintf(fileID,'\n\n');
+% 
+% write_array_float(fileID,'C',link_capacity)
+% fprintf(fileID,'\n\n');
+% 
+% write_array_float(fileID,'XI',link_cost)
+% fprintf(fileID,'\n\n');
+% 
+% write_array_float(fileID,'L',link_delay)
+% fprintf(fileID,'\n\n');
+% 
+% 
+% 
+% 
+% write_array_float(fileID,'N_M',node_memory)
+% fprintf(fileID,'\n\n');
+% 
+% write_array_float(fileID,'N_C',node_capacity)
+% fprintf(fileID,'\n\n');
+% 
+% write_array_integer(fileID,'N_K',node_connectivity)
+% fprintf(fileID,'\n\n');
+% 
+% 
+% 
+% 
+% write_array_float(fileID,'S_M',service_memory)
+% fprintf(fileID,'\n\n');
+% 
+% write_array_float(fileID,'S_C',service_computation)
+% fprintf(fileID,'\n\n');
+% 
+% write_array_float(fileID,'S_T',service_tolerance_delay)
+% fprintf(fileID,'\n\n');
+% 
+% write_array_float(fileID,'S_H',service_traffic)
+% fprintf(fileID,'\n\n');
+% 
+% write_array_float(fileID,'S_W',service_value)
+% fprintf(fileID,'\n\n');
+% 
+% 
+% 
+% 
+% 
+% 
+% write_matrix_integer(fileID,'U_N',user_node_link)
+% fprintf(fileID,'\n\n');
+% 
+% write_array_integer(fileID,'U_S',user_service)
+% fprintf(fileID,'\n\n');
+% 
+% fprintf(fileID,'\n\n');
 
 
 
-write_matrix_integer(fileID,'A',A)
-fprintf(fileID,'\n\n');
+%% Saving as a matrix
 
-write_matrix_integer(fileID,'B',B)
-fprintf(fileID,'\n\n');
-
-write_array_float(fileID,'C',link_capacity)
-fprintf(fileID,'\n\n');
-
-write_array_float(fileID,'XI',link_cost)
-fprintf(fileID,'\n\n');
-
-write_array_float(fileID,'L',link_delay)
-fprintf(fileID,'\n\n');
-
-
-
-
-write_array_float(fileID,'N_M',node_memory)
-fprintf(fileID,'\n\n');
-
-write_array_float(fileID,'N_C',node_capacity)
-fprintf(fileID,'\n\n');
-
-write_array_integer(fileID,'N_K',node_connectivity)
-fprintf(fileID,'\n\n');
-
-
-
-
-write_array_float(fileID,'S_M',service_memory)
-fprintf(fileID,'\n\n');
-
-write_array_float(fileID,'S_C',service_computation)
-fprintf(fileID,'\n\n');
-
-write_array_float(fileID,'S_T',service_tolerance_delay)
-fprintf(fileID,'\n\n');
-
-write_array_float(fileID,'S_H',service_traffic)
-fprintf(fileID,'\n\n');
-
-write_array_float(fileID,'S_W',service_value)
-fprintf(fileID,'\n\n');
+Parameters = struct('A', A,... %1 if link e originates in node n
+    'B',B,...%1 if link e terminates in node n
+    'coverage',coverage,...%Coverage distance (m)
+    'num_users',num_users,... %number of users
+    'num_services', num_service,...% number of offered different services
+    'num_edges',num_edges,...% number of edges
+    'num_nodes',num_nodes,... %number of nodes
+    'node_x',node_x,... %in meters
+    'node_y',node_y,... %in meters
+    'node_memory',node_memory,...% memory of node Gb
+    'node_connectivity', node_connectivity,... %limit of how many users can connect to a node
+    'node_capacity',node_capacity,...% capacity of node computation Ghz
+    'user_x',user_x,... %(m)
+    'user_y',user_y,... %(m)
+    'user_service',user_service,... %(number)
+    'user_node_link',user_node_link,... %logical 1 if user u can connect node n
+    'service_value',service_value,... % money the profit of serving service s
+    'service_traffic',service_traffic,... %the traffic volume of the service s
+    'service_tolerance_delay',service_tolerance_delay,... % delay tolerance of service s (ms)
+    'service_memory',service_memory,... %memory requirement of service Gb
+    'service_computation',service_computation,... %the cpu requirement Ghz
+    'link_terminates',link_terminates,...% termination node of link e
+    'link_origins',link_origins,... % origin node of link e
+    'link_delay', link_delay,... %delay of link e in ms
+    'link_cost', link_cost,... %link cost of link e
+    'link_capacity', link_capacity,...% capacity of link e
+    'Graph',G,... %the graph object,
+    'canvas_size',canvas_size);%(m)
 
 
 
+save_file_string = ['Data/service_',num2str(nAI)];
+save_file_string = strrep(save_file_string,'.',',')
+save(save_file_string, 'Parameters');
 
 
 
-write_matrix_integer(fileID,'U_N',user_node_link)
-fprintf(fileID,'\n\n');
-
-write_array_integer(fileID,'U_S',user_service)
-fprintf(fileID,'\n\n');
-
-fprintf(fileID,'\n\n');
 
 end
