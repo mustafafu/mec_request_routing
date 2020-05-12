@@ -115,76 +115,76 @@ ylim([0,canvas_size(2)])
 
 
 
-% 
-% %% Writing the data to a file
-% file_string = ['./Data/service_',num2str(nAI),'.dat'];
-% fileID = fopen(file_string,'w');
-% formatSpec = 'param %s := %d;\n';
-% fprintf(fileID,formatSpec,'U',num_users);
-% fprintf(fileID,formatSpec,'N',num_nodes);
-% fprintf(fileID,formatSpec,'E',num_edges);
-% fprintf(fileID,formatSpec,'S',num_service);
-% fprintf(fileID,'\n');
-% 
-% 
-% 
-% write_matrix_integer(fileID,'A',A)
-% fprintf(fileID,'\n\n');
-% 
-% write_matrix_integer(fileID,'B',B)
-% fprintf(fileID,'\n\n');
-% 
-% write_array_float(fileID,'C',link_capacity)
-% fprintf(fileID,'\n\n');
-% 
-% write_array_float(fileID,'XI',link_cost)
-% fprintf(fileID,'\n\n');
-% 
-% write_array_float(fileID,'L',link_delay)
-% fprintf(fileID,'\n\n');
-% 
-% 
-% 
-% 
-% write_array_float(fileID,'N_M',node_memory)
-% fprintf(fileID,'\n\n');
-% 
-% write_array_float(fileID,'N_C',node_capacity)
-% fprintf(fileID,'\n\n');
-% 
-% write_array_integer(fileID,'N_K',node_connectivity)
-% fprintf(fileID,'\n\n');
-% 
-% 
-% 
-% 
-% write_array_float(fileID,'S_M',service_memory)
-% fprintf(fileID,'\n\n');
-% 
-% write_array_float(fileID,'S_C',service_computation)
-% fprintf(fileID,'\n\n');
-% 
-% write_array_float(fileID,'S_T',service_tolerance_delay)
-% fprintf(fileID,'\n\n');
-% 
-% write_array_float(fileID,'S_H',service_traffic)
-% fprintf(fileID,'\n\n');
-% 
-% write_array_float(fileID,'S_W',service_value)
-% fprintf(fileID,'\n\n');
-% 
-% 
-% 
-% 
-% 
-% 
-% write_matrix_integer(fileID,'U_N',user_node_link)
-% fprintf(fileID,'\n\n');
-% 
-% write_array_integer(fileID,'U_S',user_service)
-% fprintf(fileID,'\n\n');
-% 
-% fprintf(fileID,'\n\n');
+
+%% Writing the data to a file
+file_string = ['./Data/service_',num2str(nAI),'.dat'];
+fileID = fopen(file_string,'w');
+formatSpec = 'param %s := %d;\n';
+fprintf(fileID,formatSpec,'U',num_users);
+fprintf(fileID,formatSpec,'N',num_nodes);
+fprintf(fileID,formatSpec,'E',num_edges);
+fprintf(fileID,formatSpec,'S',num_service);
+fprintf(fileID,'\n');
+
+
+
+write_matrix_integer(fileID,'A',A)
+fprintf(fileID,'\n\n');
+
+write_matrix_integer(fileID,'B',B)
+fprintf(fileID,'\n\n');
+
+write_array_float(fileID,'C',link_capacity)
+fprintf(fileID,'\n\n');
+
+write_array_float(fileID,'XI',link_cost)
+fprintf(fileID,'\n\n');
+
+write_array_float(fileID,'L',link_delay)
+fprintf(fileID,'\n\n');
+
+
+
+
+write_array_float(fileID,'N_M',node_memory)
+fprintf(fileID,'\n\n');
+
+write_array_float(fileID,'N_C',node_capacity)
+fprintf(fileID,'\n\n');
+
+write_array_integer(fileID,'N_K',node_connectivity)
+fprintf(fileID,'\n\n');
+
+
+
+
+write_array_float(fileID,'S_M',service_memory)
+fprintf(fileID,'\n\n');
+
+write_array_float(fileID,'S_C',service_computation)
+fprintf(fileID,'\n\n');
+
+write_array_float(fileID,'S_T',service_tolerance_delay)
+fprintf(fileID,'\n\n');
+
+write_array_float(fileID,'S_H',service_traffic)
+fprintf(fileID,'\n\n');
+
+write_array_float(fileID,'S_W',service_value)
+fprintf(fileID,'\n\n');
+
+
+
+
+
+
+write_matrix_integer(fileID,'U_N',user_node_link)
+fprintf(fileID,'\n\n');
+
+write_array_integer(fileID,'U_S',user_service)
+fprintf(fileID,'\n\n');
+
+fprintf(fileID,'\n\n');
 
 
 
