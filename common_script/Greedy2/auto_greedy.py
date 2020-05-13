@@ -18,11 +18,13 @@ def fix_one(filename,modepath):
     position = [-1, -1]
     flag = 0
     skipcount = 0
+    did_i_find_dotdot = 0
     for idx, line in enumerate(data):
         a = line.split()
-        did_i_find_dotdot = 0
         if a[0] == ':':
             did_i_find_dotdot=1
+            skipcount +=1
+            continue
 
         if did_i_find_dotdot==0:
             skipcount +=1
@@ -52,11 +54,14 @@ def fix_zero(filename,modepath):
     flag = 0
     skipcount = 0
     user_sum = 0
+    did_i_find_dotdot = 0
     for idx, line in enumerate(data):
         a = line.split()
-        did_i_find_dotdot = 0
+        
         if a[0] == ':':
             did_i_find_dotdot=1
+            skipcount +=1
+            continue
 
         if did_i_find_dotdot==0:
             skipcount +=1
@@ -99,11 +104,14 @@ def get_max_from_lp(filename='./Output/greedy_output.txt',modepath='./semi_mip.m
     if zero_constraint == '2':
         fix_zero(filename, modepath)
         return 'stop'
+    did_i_find_dotdot = 0
     for idx,line in enumerate(data):
         a = line.split()
-        did_i_find_dotdot = 0
+        
         if a[0] == ':':
             did_i_find_dotdot=1
+            skipcount +=1
+            continue
 
         if did_i_find_dotdot==0:
             skipcount +=1
