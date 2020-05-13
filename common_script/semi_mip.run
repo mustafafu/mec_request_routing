@@ -1,5 +1,5 @@
 reset;
-model lp.mod;
+model semi_mip.mod;
 data './Data/service_7.dat';
 option solver '../ampl_linux-intel64/cplex';
 solve;
@@ -7,3 +7,4 @@ solve;
 option display_round 2;
 display access_indicator;
 #display link_indicator;
+display revenue;
