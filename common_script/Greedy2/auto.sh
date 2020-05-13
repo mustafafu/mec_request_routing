@@ -18,7 +18,7 @@ option display_round 2;
 display access_indicator;
 display revenue;" > "./iter_runs/semi_mip_${iter}.run"
 
-echo "include './iter_runs/semi_mip_${iter}.run';exit;" | /scratch/mfo254/AMPL/ampl/ampl > ../Output/greedy_output_${iter}.txt
+echo "include './iter_runs/semi_mip_${iter}.run';exit;" | /scratch/mfo254/AMPL/ampl/ampl > ../Output/greedy_output_${iter}_0.txt
 
 echo "First LP finished"
 
@@ -30,7 +30,6 @@ iteration=0
 
 while [ "$flag" != "stop" ]
 do
-	echo "include './iter_runs/semi_mip_${iter}.run';exit;" | /scratch/mfo254/AMPL/ampl/ampl > ../Output/greedy_output_${iter}.txt
 	flag=$(python3 auto_greedy.py $iteration $zero_constraint $threshold $iter 2>&1 > /dev/null)
 	len=${#flag}
 	if (($len > 6));
@@ -39,9 +38,11 @@ do
 	else
 		zero_constraint=0
 	fi
+	cat ../Output/greedy_output_${iter}_${iteration}.txt
 	iteration=$((iteration+1))
 	echo "${iteration}"
 	echo $flag
+	echo "include './iter_runs/semi_mip_${iter}.run';exit;" | /scratch/mfo254/AMPL/ampl/ampl > ../Output/greedy_output_${iter}_${iteration}.txt
 
 done
 
