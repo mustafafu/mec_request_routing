@@ -85,9 +85,17 @@ def get_max_from_lp(filename='./Output/greedy_output.txt',modepath='./semi_mip.m
         return 'stop'
     for idx,line in enumerate(data):
         a = line.split()
-        if idx<5 or len(a)!=10:
-            skipcount += 1
+        did_i_find_dotdot = 0
+        if a[0] == ':':
+            did_i_find_dotdot=1
+
+        if did_i_find_dotdot==0:
+            skipcount +=1
             continue
+
+        if a[0] == ';':
+            break
+
         access = a
         for col,access_indicator in enumerate(access):
             if col == 0:
