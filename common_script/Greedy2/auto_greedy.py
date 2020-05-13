@@ -20,9 +20,17 @@ def fix_one(filename,modepath):
     skipcount = 0
     for idx, line in enumerate(data):
         a = line.split()
-        if idx < 5 or len(a) != 10:
-            skipcount += 1
+        did_i_find_dotdot = 0
+        if a[0] == ':':
+            did_i_find_dotdot=1
+
+        if did_i_find_dotdot==0:
+            skipcount +=1
             continue
+
+        if a[0] == ';':
+            break
+
         access = a
         for col, access_indicator in enumerate(access):
             if col == 0:
@@ -46,9 +54,17 @@ def fix_zero(filename,modepath):
     user_sum = 0
     for idx, line in enumerate(data):
         a = line.split()
-        if idx < 5 or len(a) != 10:
-            skipcount += 1
+        did_i_find_dotdot = 0
+        if a[0] == ':':
+            did_i_find_dotdot=1
+
+        if did_i_find_dotdot==0:
+            skipcount +=1
             continue
+
+        if a[0] == ';':
+            break
+
         access = a
         for col, access_indicator in enumerate(access):
             if col == 0:
