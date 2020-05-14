@@ -1,9 +1,13 @@
 if isempty(iteration_limit)
     iteration_limit = [1,2]
 end
+
+combined_output = zeros(length(iteration_limit(1):iteration_limit(2)),3);
+% combined_output(:,1) = iteration_limit(1):iteration_limit(2);
+
 for nAI=iteration_limit(1):iteration_limit(2)
     load_file_string = ['Data/service_',num2str(nAI)];
-    load_file_string = strrep(load_file_string,'.',',')
+    %     load_file_string = strrep(load_file_string,'.',',')
     load(load_file_string);
     %% Get Parameters
     service_value = Parameters.service_value;
@@ -37,6 +41,7 @@ for nAI=iteration_limit(1):iteration_limit(2)
     isUser_served = zeros(Parameters.num_users,1);
     objective = 0;
     %% greedy method trying to serve users with highest value
+    tic
     for idx = 1:length(users)
         best_user = users(idx);
         % Greeedy without routing
@@ -117,10 +122,17 @@ for nAI=iteration_limit(1):iteration_limit(2)
             end
         end
     end
+    b = floor(toc * 1000);
     [node_memory,node_capacity];
     save_file_string = ['Output/greedy_',num2str(nAI)];
     save_file_string = strrep(save_file_string,'.',',')
-    save(save_file_string,'objective','server_indicator','access_indicator','link_indicator');
-    
+    save(save_file_string,'objective','b','server_indicator','access_indicator','link_indicator');
+    combined_output(nAI,1) = nAI;
+    combined_output(nAI,2) = b;
+    combined_output(nAI,3) = objective;
     
 end
+
+save_file_string = ['solutions_greedy'];
+save_file_string = strrep(save_file_string,'.',',')
+save(save_file_string,'combined_output');

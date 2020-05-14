@@ -50,14 +50,14 @@ for ee=1:num_edges
     B(ee,link_terminates(ee)) = 1;
 end
 
-%% Plot the Edges
-figure()
-G = digraph(link_origins,link_terminates);
-plot(G,'XData',node_x,'YData',node_y)
-hold on;
+% %% Plot the Edges
+% figure()
+% G = digraph(link_origins,link_terminates);
+% plot(G,'XData',node_x,'YData',node_y)
+% hold on;
 
 %% Services
-num_service = 100;
+num_service = 500;
 service_memory = 1e9 * ( 20 + 80 * rand( num_service,1 ) ); % 20-100 GBs
 service_computation = 1e9 * ( 0.1 + 0.4 * rand( num_service,1 ) ); %0.1 to 0.5 GHz
 service_traffic = 1e6 * ( 1 + 4 * rand( num_service,1 ) ); % 1- 5 Mbps
@@ -103,14 +103,14 @@ user_node_link = logical(user_node_link);
 
 %% Plotting
 % figure()
-scatter(node_x,node_y,'^r','filled')
-hold on;
-scatter(user_x,user_y,ones(num_users,1),'bo')
-% for plotting a bs coverage.
+% scatter(node_x,node_y,'^r','filled')
+% hold on;
+% scatter(user_x,user_y,ones(num_users,1),'bo')
+% % for plotting a bs coverage.
 % which_bs = 4;
-% scatter(user_x(user_node_link(:,which_bs)),user_y(user_node_link(:,which_bs)),ones(sum(user_node_link(:,which_bs)),1),'go')
-xlim([0,canvas_size(1)])
-ylim([0,canvas_size(2)])
+% scatter(user_x(user_node_link(:,which_bs)),user_y(user_node_link(:,which_bs)),ones(sum(user_node_link(:,which_bs)),1),'ro')
+% xlim([0,canvas_size(1)])
+% ylim([0,canvas_size(2)])
 
 
 
