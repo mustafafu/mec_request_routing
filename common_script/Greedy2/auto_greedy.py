@@ -163,8 +163,9 @@ if __name__ == '__main__':
     #                        zero_constraint=args.zero_constraint, threshold=args.threshold,
     #                         filename='./Output/greedy_output.txt', modepath='./semi_mip.mod')
     scenario_number = sys.argv[4]
+    inner_iter = sys.argv[1]
     modepath_string = './iter_models/semi_mip_' + str(scenario_number) + '.mod'
-    filename_string = '../Output/greedy_output_' + str(scenario_number) + '.txt'
+    filename_string = '../Output/greedy_output_' + str(scenario_number) + '_' + str(inner_iter) + '.txt'
     flag = get_max_from_lp(filename=filename_string,modepath=modepath_string,iter=sys.argv[1],zero_constraint=sys.argv[2],threshold=sys.argv[3])
 
 #     print(max_value,position)

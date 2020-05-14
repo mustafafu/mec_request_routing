@@ -1,22 +1,26 @@
 #!/bin/bash
 iter=$1
 
-cp ./semi_mip_backup.mod ./semi_mip_${iter}.mod
+module load python3/intel/3.6.3
+
+cp ./semi_mip.run ./iter_runs/"semi_mip_${iter}.run"
+cp ./semi_mip_backup.mod ./iter_models/"semi_mip_${iter}.mod"
 
 greedy2_start=`date +%s%3N`
 
 
 echo "reset;
-model semi_mip_${iter}.mod;
+model './iter_models/semi_mip_${iter}.mod';
 data '../Data/service_${iter}.dat';
-option solver '../ampl_linux-intel64/cplex';
+option solver '/scratch/mfo254/AMPL/ampl/cplex';
 solve;
 option display_round 2;
 display access_indicator;
-display revenue;" > semi_mip_${iter}.run
+display revenue;" > "./iter_runs/semi_mip_${iter}.run"
 
-echo "include semi_mip_${iter}.run;exit;" | ../ampl_linux-intel64/ampl > ../Output/greedy_output_${iter}.txt
+echo "include './iter_runs/semi_mip_${iter}.run';exit;" | /scratch/mfo254/AMPL/ampl/ampl > ../Output/greedy_output_${iter}_0.txt
 
+echo "First LP finished"
 
 
 threshold=0.85
@@ -26,7 +30,6 @@ iteration=0
 
 while [ "$flag" != "stop" ]
 do
-	echo "include semi_mip_${iter}.run;exit;" | ../ampl_linux-intel64/ampl > ../Output/greedy_output_${iter}.txt
 	flag=$(python3 auto_greedy.py $iteration $zero_constraint $threshold $iter 2>&1 > /dev/null)
 	len=${#flag}
 	if (($len > 6));
@@ -35,8 +38,11 @@ do
 	else
 		zero_constraint=0
 	fi
+	cat ../Output/greedy_output_${iter}_${iteration}.txt
 	iteration=$((iteration+1))
+	echo "${iteration}"
 	echo $flag
+	echo "include './iter_runs/semi_mip_${iter}.run';exit;" | /scratch/mfo254/AMPL/ampl/ampl > ../Output/greedy_output_${iter}_${iteration}.txt
 
 done
 
