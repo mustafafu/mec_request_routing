@@ -1,7 +1,8 @@
 reset;
 model mip.mod;
-data './Data/service_2.dat';
+data './Data/service_7.dat';
 option solver '/home/mustafafu/ampl_linux-intel64/cplex';
+/*option cplex_options 'mipgap=1e-2 threads=1';*/
 solve;
 display server_indicator;
 display access_indicator;
