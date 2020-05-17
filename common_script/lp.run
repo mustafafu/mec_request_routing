@@ -1,8 +1,10 @@
 reset;
 model lp.mod;
-data './Data/service_7.dat';
+data './Data/service_5.dat';
 option solver '/home/mustafafu/ampl_linux-intel64/cplex';
+option cplex_options 'mipgap=1e-2 threads=1';
 solve;
+option display_round 2;
 display server_indicator;
 display access_indicator;
 display link_indicator;

@@ -1,6 +1,6 @@
-if isempty(iteration_limit)
-    iteration_limit = [1,2]
-end
+% if isempty(iteration_limit)
+%     iteration_limit = [1,2]
+% end
 
 combined_output = zeros(length(iteration_limit(1):iteration_limit(2)),3);
 % combined_output(:,1) = iteration_limit(1):iteration_limit(2);

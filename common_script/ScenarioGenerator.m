@@ -1,9 +1,10 @@
-% to run iteration_limit=limit;ScenarioGenerator
-if isempty(iteration_limit)
-    iteration_limit = [1,2]
-end
+%to run iteration_limit=limit;ScenarioGenerator
+% if isempty(iteration_limit)
+%     iteration_limit = [1,2]
+% end
 for nAI=iteration_limit(1):iteration_limit(2)
 %% Canvas
+disp(nAI)
 rng(nAI,'twister');
 canvas_size = [600,600];
 
@@ -50,14 +51,16 @@ for ee=1:num_edges
     B(ee,link_terminates(ee)) = 1;
 end
 
+G = digraph(link_origins,link_terminates);
+
 % %% Plot the Edges
 % figure()
-% G = digraph(link_origins,link_terminates);
+
 % plot(G,'XData',node_x,'YData',node_y)
 % hold on;
 
 %% Services
-num_service = 500;
+num_service = 100;
 service_memory = 1e9 * ( 20 + 80 * rand( num_service,1 ) ); % 20-100 GBs
 service_computation = 1e9 * ( 0.1 + 0.4 * rand( num_service,1 ) ); %0.1 to 0.5 GHz
 service_traffic = 1e6 * ( 1 + 4 * rand( num_service,1 ) ); % 1- 5 Mbps
