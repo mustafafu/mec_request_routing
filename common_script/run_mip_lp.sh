@@ -3,8 +3,8 @@
 loopstart=$1
 loopend=$2
 
-cplex_path=/home/mustafafu/ampl_linux-intel64/cplex
-ampl_path=/home/mustafafu/ampl_linux-intel64/ampl
+cplex_path=/scratch/mfo254/AMPL/ampl/cplex
+ampl_path=/scratch/mfo254/AMPL/ampl/ampl
 
 # run matlab with argument looplimit times,
 matlab -nodisplay -nosplash -nodesktop -r "iteration_limit=[${loopstart},${loopend}];try, run('ScenarioGenerator.m'), catch, exit, end, exit"
