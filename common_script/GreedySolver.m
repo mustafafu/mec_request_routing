@@ -2,6 +2,7 @@
 %     iteration_limit = [1,2]
 % end
 
+
 combined_output = zeros(length(iteration_limit(1):iteration_limit(2)),3);
 % combined_output(:,1) = iteration_limit(1):iteration_limit(2);
 
@@ -33,7 +34,17 @@ for nAI=iteration_limit(1):iteration_limit(2)
     link_capacity = init_link_capacity;
     
     user_value = service_value(user_service);
+    
+    % Only Value
     [user_value, users] = sort(user_value,'descend');
+%     % Value and Memory
+%     value_per_memory = service_value(user_service)./service_memory(user_service);
+%     [~, users] = sort(value_per_memory,'descend');
+%     % Value and Computation
+%     value_per_cpu = service_value(user_service)./service_computation(user_service);
+%     [~, users] = sort(value_per_cpu,'descend');
+    
+    user_value = user_value(users);
     %% output variables
     server_indicator = zeros(Parameters.num_users,Parameters.num_nodes);
     access_indicator = zeros(Parameters.num_users,Parameters.num_nodes);
@@ -124,7 +135,7 @@ for nAI=iteration_limit(1):iteration_limit(2)
     end
     b = floor(toc * 1000);
     [node_memory,node_capacity];
-    save_file_string = ['Output/greedy_',num2str(nAI)];
+    save_file_string = ['Output/reg_greedy_',num2str(nAI)];
     save_file_string = strrep(save_file_string,'.',',')
     save(save_file_string,'objective','b','server_indicator','access_indicator','link_indicator');
     combined_output(nAI,1) = nAI;
@@ -133,6 +144,6 @@ for nAI=iteration_limit(1):iteration_limit(2)
     
 end
 
-save_file_string = ['solutions_greedy'];
+save_file_string = ['reg_solutions_greedy'];
 save_file_string = strrep(save_file_string,'.',',')
 save(save_file_string,'combined_output');

@@ -1,7 +1,7 @@
 reset;
 model mip.mod;
-data './Data/service_900.dat';
-option solver '/home/mustafafu/ampl_linux-intel64/cplex';
+data './Data/service_33.dat';
+option solver '/scratch/mfo254/AMPL/ampl/cplex';
 option cplex_options 'mipgap=1e-2 threads=1';
 solve;
 option display_round 2;

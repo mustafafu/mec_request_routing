@@ -20,7 +20,7 @@ y_vals = seperation/2 + seperation * (0:sqrt(num_nodes)-1);
 node_x = node_x(:);
 node_y = node_y(:);
 
-node_memory = 1e9 * ( 250 + 1e3 * rand( size(nodes) ) ); %[250,1250] Gbps
+node_memory = 1e9 * ( 250 + 1e3 * rand( size(nodes) ) ); %[250 1000] GB
 node_capacity = 1e9 * ( 1 + 9 * rand( size(nodes) ) ); %[1,10] GHz
 node_connectivity = randi([30,100],size(nodes));
 
@@ -53,11 +53,7 @@ end
 
 G = digraph(link_origins,link_terminates);
 
-% %% Plot the Edges
-% figure()
 
-% plot(G,'XData',node_x,'YData',node_y)
-% hold on;
 
 %% Services
 num_service = 100;
@@ -105,16 +101,25 @@ user_node_link = logical(user_node_link);
 
 
 %% Plotting
+
+% %% Plot the Edges
 % figure()
+% 
+% plot(G,'XData',node_x,'YData',node_y)
+% hold on;
+% 
+% marker_size = 12;
+% 
 % scatter(node_x,node_y,'^r','filled')
 % hold on;
-% scatter(user_x,user_y,ones(num_users,1),'bo')
+% scatter(user_x,user_y,marker_size*ones(size(user_x)),'bo','filled')
 % % for plotting a bs coverage.
 % which_bs = 4;
-% scatter(user_x(user_node_link(:,which_bs)),user_y(user_node_link(:,which_bs)),ones(sum(user_node_link(:,which_bs)),1),'ro')
+% scatter(user_x(user_node_link(:,which_bs)),user_y(user_node_link(:,which_bs)),marker_size*ones(sum(user_node_link(:,which_bs)),1),'ro','filled')
 % xlim([0,canvas_size(1)])
 % ylim([0,canvas_size(2)])
-
+% 
+% legend('Edges','Nodes','All Users','Node 4 Users')
 
 
 
