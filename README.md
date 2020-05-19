@@ -20,10 +20,79 @@ one being bottom up approach and the other being top to bottom approach.
 Finally, we compare the performance and execution times of these 4
 different approaches.
 
+# System Model
 
+We consider a MEC network consisting of a set \(\mathcal{N}\) of \(N\)
+nodes (base stations) equipped with storage and computation
+capabilities, a set of \(\mathcal{U}\) of \(U\) mobile users, and a set
+of \(\mathcal{E}\) of \(E\) links. An example of the network is
+illustrated in Fig. [1](#fig:scenario).
 
+![](https://github.com/mustafafu/mec_request_routing/blob/master/common_script/Figures/Scenario.jpg)*Fig 1: An example scenario. User positions are generated randomly, the graph
+consisting of nodes and edges is fixed over all the simulations. Blue
+and red points together represents all the users, where the latter is
+the users covered by access point 4 are given as an example coverage
+region.*
 
+The centralized cloud can be represented as another node $l$ where
+combined with other nodes form the set $\mathcal{N} \cup \{l\}$. Each
+user can access to the network through a set of access nodes
+$\mathcal{N}_u$. If the request of user u determined to be served in the
+network then, one of the connections between user $u$ and nodes
+$\mathcal{N}_u$ should be active. The MEC network receives service
+requests from its subscribers in a stochastic manner. Without the loss
+of generality, we assume each user request one service
+$s_u \in \mathcal{S}$ where the set $\mathcal{S}$ contains the library
+of services offered in this particular MEC network. If a user performs
+multiple requests, we can split it into multiple users. Each of these
+services can require different computation power, storage space on the
+computation nodes. Moreover a service can require to transfer data
+between the user and serving computing node hence consumes bandwidth.
+Generally the services offered by 5G-NR, such as autonomous driving,
+AR/VR and tactile internet, can tolerate up to a certain latency. These
+requirements of a service $s$ on computation power, storage space
+(memory), bandwidth (traffic volume), latency are given as $\bar{c}_s$,
+$\bar{m}_s$, $\bar{h}_s$, and $\bar{t}_s$, respectively. A mobile
+network operator can price this various services as $w_s$, which can
+model how much a user can be charged for service $s$. Notice that this
+price is independent of user, however, without increasing the problem
+complexity, an MNO can selectively price its users.
 
+The request of user $u$ can be routed to any node on the edge network.
+The memory and computation resources required by the service will be
+reserved on the node. The request can, also, be served at the
+centralized cloud where the memory and computational constrains are no
+longer a system limitation. However, accessing the centralized cloud may
+cause high end to end latency due to its long distance. The latency
+requirement of the service should be satisfied when the request is
+decided to be served at the cloud. Notice that the service will still
+use the available bandwidths on the network.
+
+The network operator needs to decide whether to serve a user at the edge
+network, at the centralized cloud or ignore the service request if it
+can not satisfy the requirements of the service. If the network operator
+decides to serve the user, it needs to allocate the service on a node,
+and also use a path through one of the access node of that user. To
+model these decisions we introduce optimization variables
+
+-   $x_{nu}$ : binary variable. 1 if the request of user $u$ is served
+    at node $n$, 0 otherwise.
+
+-   $\beta_{u}$ : binary variable ($\beta_{u}$ =
+    $\sum_{n \in \mathcal{N} \cup \{l\}} x_{nu}$). 1 if the request of
+    user $u$ is served, 0 if the request from the user is dropped.
+
+-   $y_{n'u}$ : binary variable. 1 if the user $u$ access the network
+    through node $n'$ where $n' \in \mathcal{N}_u$, 0 otherwise.
+
+-   $u_{ue}$ : binary variable. 1 if the link $e$ is used while serving
+    the user $u$, 0 otherwise.
+
+-   $y_e$: traffic on link e.
+
+-   $\xi_e$: unit cost on link e.
+
+# Reproduce our Results
 To reproduce our experiment locally follow the steps below.
 
 ```
