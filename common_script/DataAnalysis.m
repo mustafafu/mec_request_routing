@@ -17,9 +17,9 @@ opts.ImportErrorRule = "omitrow";
 opts.MissingRule = "omitrow";
 
 % Import the data
-mip_data = readtable("/home/mustafafu/Dropbox/Git/mec_request_routing/common_script/solutions_mip.txt", opts);
-lp_data = readtable("/home/mustafafu/Dropbox/Git/mec_request_routing/common_script/solutions_lp.txt", opts);
-gdv2_data = readtable("/home/mustafafu/Dropbox/Git/mec_request_routing/common_script/solutions_gd2_v2.txt", opts);
+mip_data = readtable("/home/mustafafu/Dropbox/Git/mec_request_routing/common_script/Results/solutions_mip.txt", opts);
+lp_data = readtable("/home/mustafafu/Dropbox/Git/mec_request_routing/common_script/Results/solutions_lp.txt", opts);
+gdv2_data = readtable("/home/mustafafu/Dropbox/Git/mec_request_routing/common_script/Results/solutions_gd2_v2.txt", opts);
 
 clear opts
 
@@ -32,11 +32,11 @@ gdv2_data = sortrows(gdv2_data,'iteration_index','ascend');
 mip_matrix = mip_data(:,{'iteration_index','duration','solution'}).Variables;
 lp_matrix = lp_data(:,{'iteration_index','duration','solution'}).Variables;
 gd2_matrix = gdv2_data(:,{'iteration_index','duration','solution'}).Variables;
-load('reg_solutions_greedy.mat','combined_output')
+load('./Results/reg_solutions_greedy.mat','combined_output')
 gd1_matrix_regular = combined_output;
-load('mem_solutions_greedy.mat','combined_output')
+load('./Results/mem_solutions_greedy.mat','combined_output')
 gd1_matrix_memory = combined_output;
-load('comp_solutions_greedy.mat','combined_output')
+load('./Results/comp_solutions_greedy.mat','combined_output')
 gd1_matrix_computation = combined_output;
 
 %%
