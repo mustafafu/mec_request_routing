@@ -4,9 +4,10 @@ iter=$1
 module load python3/intel/3.6.3
 
 
-cplex_path=/home/mustafafu/ampl_linux-intel64/cplex
-ampl_path=/home/mustafafu/ampl_linux-intel64/ampl
+cplex_path=/scratch/mfo254/AMPL/ampl/cplex
+ampl_path=/scratch/mfo254/AMPL/ampl/ampl
 
+echo $iter
 
 cp ./semi_mip.run ./iter_runs/"semi_mip_${iter}.run"
 cp ./semi_mip_backup.mod ./iter_models/"semi_mip_${iter}.mod"
