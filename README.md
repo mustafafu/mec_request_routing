@@ -96,8 +96,7 @@ where start and end are integer values for the range of simulation instance. As 
 will solve the instances {10,11,12,13,14,15}. This bash script will output the values of the objective function in each step.
 
 
-# To run on NYU HPC
-You will need an account. To run on hpc, clone the repository as previously mentioned. But this time run
+To run on NYU HPC you will need an account. To run on hpc, clone the repository as previously mentioned. But this time run
 ```
 sbatch --array=1-999 lpmip.sbatch
 ```
