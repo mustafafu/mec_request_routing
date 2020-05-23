@@ -1,7 +1,7 @@
 #!/bin/bash
 
-iter=1001
-endpoint=1011
+iter=$1
+endpoint=$2
 step=1
 #echo $iter
 
