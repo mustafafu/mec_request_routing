@@ -99,7 +99,7 @@ will solve the instances {10,11,12,13,14,15}. This bash script will output the v
 # To run on NYU HPC
 You will need an account. To run on hpc, clone the repository as previously mentioned. But this time run
 ```
-sbatch --array=1-999 lipmip.sbatch
+sbatch --array=1-999 lpmip.sbatch
 ```
 This will produce the outputs of each solution inside output folder as txt file. Moreover, the objective values achieved by each solution will be recorded in their respective .txt files in the current folder. One can use the DataProcessing script to produce the figures.
 
