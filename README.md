@@ -72,25 +72,7 @@ The network operator needs to decide whether to serve a user at the edge
 network, at the centralized cloud or ignore the service request if it
 can not satisfy the requirements of the service. If the network operator
 decides to serve the user, it needs to allocate the service on a node,
-and also use a path through one of the access node of that user. To
-model these decisions we introduce optimization variables
-
--   $x_{nu}$ : binary variable. 1 if the request of user $u$ is served
-    at node $n$, 0 otherwise.
-
--   $\beta_{u}$ : binary variable ($\beta_{u}$ =
-    $\sum_{n \in \mathcal{N} \cup \{l\}} x_{nu}$). 1 if the request of
-    user $u$ is served, 0 if the request from the user is dropped.
-
--   $y_{n'u}$ : binary variable. 1 if the user $u$ access the network
-    through node $n'$ where $n' \in \mathcal{N}_u$, 0 otherwise.
-
--   $u_{ue}$ : binary variable. 1 if the link $e$ is used while serving
-    the user $u$, 0 otherwise.
-
--   $y_e$: traffic on link e.
-
--   $\xi_e$: unit cost on link e.
+and also use a path through one of the access node of that user.
 
 # Reproduce our Results
 To reproduce our experiment locally follow the steps below.
