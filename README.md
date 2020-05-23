@@ -112,3 +112,114 @@ where start and end are integer values for the range of simulation instance. As 
 ./run_mip_lp.sh 10 15
 ```
 will solve the instances {10,11,12,13,14,15}. This bash script will output the values of the objective function in each step.
+
+
+For running on local machine to get result and running time:
+
+For LP:
+
+run only one scenario:
+```
+./lp_time_cal.sh $scenario_number
+```
+where return the result and running time. For example:
+```
+./lp_time_cal.sh 500
+```
+will return result and running time of scenario 500.
+
+
+
+run on multi-input:
+```
+./lp_time_cal.sh $start $end
+```
+where save the result and running time to ./Output/. For example:
+```
+./lp_time_cal.sh 200 300
+```
+will save result and running time from scenario 200 to 300 to ./Output/
+
+
+
+For MIP:
+
+run only one scenario:
+```
+./lp_time_cal.sh $scenario_number
+```
+where return the result and running time. For example:
+```
+./mip_time_cal.sh 500
+```
+will return result and running time of scenario 500.
+
+
+
+run on multi-input:
+```
+./mip_time_cal.sh $start $end
+```
+where save the result and running time to ./Output/. For example:
+```
+./mip_time_cal.sh 200 300
+```
+will save result and running time from scenario 200 to 300 to ./Output/
+
+
+
+
+
+For Heuristic2:
+
+first cd to ./Greedy2 directory
+```
+cd ./Greedy2
+```
+then like LP and MIP
+
+run only one scenario:
+```
+./auto2.sh $scenario_number
+```
+where return the result and running time. For example:
+```
+./auto2.sh 500
+```
+will return result and running time of scenario 500.
+
+
+
+run on multi-input:
+```
+./more_users_auto.sh $start $end
+```
+where save the result and running time to ../Output/. For example:
+```
+./more_users_auto.sh 200 300
+```
+will save result and running time from scenario 200 to 300 to ../Output/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
